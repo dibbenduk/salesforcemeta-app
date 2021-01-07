@@ -1,0 +1,7 @@
+<template>
+  <div>
+    <c-object-select onobjchange={handleObjChange}></c-object-select>
+    <c-field-select obj-name={selectedObject} onfieldselected={handlefieldChange}></c-field-select>
+    <c-query-field obj-name={selectedObject} field-name={selectedFields}></c-query-field>
+  </div>
+</template>

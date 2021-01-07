@@ -2,6 +2,8 @@
   <div>
     <c-object-select onobjchange={handleObjChange}></c-object-select>
     <c-field-select obj-name={selectedObject} onfieldselected={handlefieldChange}></c-field-select>
-    <c-query-field obj-name={selectedObject} field-name={selectedFields}></c-query-field>
+    <c-query-field obj-name={selectedObject} field-name={selectedFields} btn-click={buttonClick} onreturnquery={handleReturnQuery}></c-query-field>
+    <c-query-button onbtnclick={handleButtonClick}></c-query-button>
+    <c-data-table final-query={finalQuery}></c-data-table>
   </div>
 </template>

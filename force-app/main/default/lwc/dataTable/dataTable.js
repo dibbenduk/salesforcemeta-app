@@ -16,62 +16,16 @@ export default class DataTable extends LightningElement {
   }
 
   get columns() {
-    /*
-    let items = [];
-    let field = '';
-    for (let i = 0; i < this.fields.length; i++) {
-      field = this.fields[i].charAt(0).toUpperCase() + this.fields[i].slice(1);
-      let item = {
-        label: field,
-        fieldName: field
-      };
-      items.push(item);
-    }
-    return items;
-    */
+
     let vals = [];
-    for (let x in this.records[0]) {
+    for (let x in this.fields) {
       let val = {
-        label: x,
-        fieldName: x
+        label: this.fields[x],
+        fieldName: this.fields[x]
       };
       vals.push(val);
     }
     return vals;
-
-    /*
-   if(this.records !== undefined) {
-    let arr1 = [];
-    let arr2 = this.fields;
-    console.log(this.records[0]);
-    for (let x in this.records[0]) {
-      arr1.push(x.toString());
-    }
-    console.log(arr1);
-    console.log(arr2);
-
-    let vals = [];
-    let i = 0;
-    let j = 0;
-    while (i < arr2.length) {
-      if (arr2[i] === arr1[j].toLowerCase()) {
-        let val = {
-          label: arr1[j],
-          fieldName: arr1[j]
-        };
-        vals.push(val);
-        i++, j++;
-      } else {
-        let val = {
-          label: arr2[i],
-          fieldName: arr2[i]
-        };
-        vals.push(val);
-        i++;
-      }
-    }
-    return vals;
-  }*/
   }
 
   @wire(getRecords, { que: "$_finalQuery" })

@@ -27,11 +27,10 @@ public with sharing class ReturnSObjectList {
         SObjectType objName = Schema.getGlobalDescribe().get(strName);
         
         Map<String, Schema.SObjectField> fieldMap = objName.getDescribe().fields.getMap();
-        Set<String> fieldSet = fieldMap.keySet();
         List<String> fieldList = new List<String>();
         
-        for(String str: fieldSet) {
-            fieldList.add(str);
+        for(Schema.SObjectField field: fieldMap.values()) {
+            fieldList.add(field.getDescribe().getName());
         }
         System.debug('FieldList returned');
         System.debug(fieldList);

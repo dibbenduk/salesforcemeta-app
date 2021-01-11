@@ -2,7 +2,7 @@ import { api, LightningElement, track, wire } from "lwc";
 import getObjectFieldList from "@salesforce/apex/ReturnSObjectList.getObjectFieldList";
 
 export default class FieldSelect extends LightningElement {
-  _selected = [];
+  @track selectedFields = [];
   @track _objName = '';
   @track fieldList = [];
 
@@ -22,6 +22,7 @@ export default class FieldSelect extends LightningElement {
       console.log(error);
     } else if (data) {
       this.fieldList = data;
+      this.selectedFields = [];
     }
   }
 
@@ -37,15 +38,11 @@ export default class FieldSelect extends LightningElement {
     return items;
   }
 
-  get selected() {
-    return this._selected.length ? this._selected : "none";
-  }
-
   handleChange(e) {    
-    this._selected = e.detail.value;
+    this.selectedFields = e.detail.value;
     //create event
     const event = new CustomEvent('fieldselected', {
-      detail: this._selected
+      detail: this.selectedFields
     });
     //fire event
     this.dispatchEvent(event);
